@@ -1,0 +1,20 @@
+{
+  "name": "devjobs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "npm-run-all dev:server",
+    "dev:server": "NODE_ENV=development node server.js server.js --watch src --watch server.js",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "npm-run-all": "4.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "1.12.1"
+  }
+}
