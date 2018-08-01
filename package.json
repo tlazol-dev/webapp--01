@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "npm-run-all dev:server",
-    "dev:server": "NODE_ENV=development node server.js server.js --watch src --watch server.js",
+    "dev:server": "NODE_ENV=development nodemon server.js server.js --watch src --watch server.js",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
