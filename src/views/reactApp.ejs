@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My app</title>
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    <div id="app-container">
+
+    </div>
+    <% var envFilename = process.env.NODE_ENV === 'production' ? 'bundle.min.js' : 'bundle.js' %>
+    <script src="/js/<%=envFilename%>"></script>
+  </body>
+</html>
