@@ -3,7 +3,7 @@
 const driverSeedData= [
   {
     id: 1,
-    user_id: 2,
+    user_id: 5,
     vehicle_make: '',
     vehicle_name: '',
     vehicle_licplates : 'MJR-5864',
@@ -14,7 +14,7 @@ const driverSeedData= [
   },
   {
     id: 2,
-    user_id: 3,
+    user_id: 6,
     vehicle_make: '',
     vehicle_name: '',
     vehicle_licplates : 'LML-675',
@@ -22,19 +22,27 @@ const driverSeedData= [
     behavior_test: true,
     certification_test: true,
     active: true
-  }
-  // },
-  // {
-  //   id: 3,
-  //   user_id: 1,
-  //   vehicle_make: '',
-  //   vehicle_name: '',
-  //   vehicle_licplates : 'CHC-986',
-  //   criminal_record: false,
-  //   behavior_test: true,
-  //   certification_test: true,
-  // },
-
+  },
+  {
+    id: 3,
+    user_id: 7,
+    vehicle_make: '',
+    vehicle_name: '',
+    vehicle_licplates : 'CHC-986',
+    criminal_record: false,
+    behavior_test: true,
+    certification_test: true,
+  },
+  {
+    id: 4,
+    user_id: 8,
+    vehicle_make: '',
+    vehicle_name: '',
+    vehicle_licplates : 'CHC-986',
+    criminal_record: false,
+    behavior_test: true,
+    certification_test: true,
+  },
 ]
 
 

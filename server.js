@@ -22,6 +22,10 @@ const authRouter = require(`./src/routers/authRouter.js`)
 const app = express()
 const PORT = 3000
 
+const appDb = knex(dbConfigObj.development)
+Model.knex(appDb)
+app.locals.db = appDb
+
 
 app.use(cookieParser() )
 app.use( cookieSession ({
@@ -39,9 +43,7 @@ passport.use(registerLocalStrategy())
 passport.serializeUser(configSerializeUser())
 passport.deserializeUser(configDeserializeUser())
 
-const appDb = knex(dbConfigObj.development)
-Model.knex(appDb)
-app.locals.db = appDb
+
 
 app.use( bodyParser.urlencoded({extended:false}) )
 app.use( bodyParser.json())

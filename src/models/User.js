@@ -17,6 +17,7 @@ class User extends Password(Model) {
 
   static get relationMappings(){
      const Journey = require('./Journey.js')
+     const DriverAccount = require('./DriverAccount.js')
 
       return {
         "passengerJourneys" : {
@@ -42,7 +43,7 @@ class User extends Password(Model) {
           modelClass: DriverAccount,
           join: {
             from: 'users.id',
-            to: 'driver_accounts.user_id'
+            to: 'drivers_users.driver_user_id'
           }
         }
       }

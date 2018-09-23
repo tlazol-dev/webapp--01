@@ -6,9 +6,10 @@ const Journey = require('../models/Journey.js')
 const apiRouter = Router()
 
 
+
 const showRoute = (req, res)=>{
   res.json({
-    '/api/passengers' : 'Show passengers',
+    '/api/users' : 'Show users',
     '/api/drivers' : 'Show drivers'
   })
 }
@@ -16,7 +17,7 @@ const showRoute = (req, res)=>{
 
 
 const fetchManyPassengers = (req, res)=>{
-    Passenger.query()
+    User.query()
     .eager('passengerJourneys')
     .then((recordsWhitPassengers)=>{
       res.status(200).json(recordsWhitPassengers)
@@ -36,7 +37,7 @@ const fetchOnePassenger = (req, res)=>{
   const idInRoute = req.params._id
     console.log(idInRoute);
 
-    db.select('*').from('passenger_users')
+    db.select('*').from('users')
       .where('id', '=', idInRoute)
       .then((dbRecordsReturned)=>{
         res.json(dbRecordsReturned)
@@ -45,7 +46,7 @@ const fetchOnePassenger = (req, res)=>{
 
  const createOnePassenger = function(req, res){
    // console.log(req.body)
-   Passengers.query()
+   User.query()
      .insert(req.body)
      .then((newRecord)=>{
        res.status(200).json(newRecord)
@@ -53,7 +54,7 @@ const fetchOnePassenger = (req, res)=>{
  }
 
  const editOnePassenger = (req, res)=>{
-   Passengers.query()
+   User.query()
       .updateAndFetchById( req.params._id, req.body)
       .then((updatedRecord)=>{
         res.status(200).json(updatedRecord)
@@ -62,7 +63,7 @@ const fetchOnePassenger = (req, res)=>{
 
 
 const deleteOnePassenger = (req, res)=>{
-   Passengers.query()
+   User.query()
      .deleteById(req.params._id)
      .then((deleteRecord)=>{
        res.status(200).json(deleteRecord)
@@ -72,10 +73,10 @@ const deleteOnePassenger = (req, res)=>{
 
 
 const fetchManyDrivers = (req, res)=>{
-    Driver.query()
+    User.query()
      .eager('driverJourneys')
-     .then((recordsWhitPassengers)=>{
-       res.status(200).json(recordsWhitPassengers)
+     .then((recordsWhitDrivers)=>{
+       res.status(200).json(recordsWhitDrivers)
      })
      .catch((err)=>{
        var errorMessage = err.toString()
@@ -89,7 +90,7 @@ const fetchOneDriver = (req, res)=>{
   const idInRoute = req.params._id
    console.log(idInRoute)
 
-     db.select('*').from('drivers_users')
+     db.select('*').from('driver_accounts')
      .where('id', '=', idInRoute)
      .then((dbRecordsReturned)=>{
        res.json(dbRecordsReturned)
@@ -98,7 +99,7 @@ const fetchOneDriver = (req, res)=>{
 
 const createOneDriver = function(req, res){
   // console.log(req.body)
-    Driver.query()
+    User.query()
     .insert(req.body)
     .then((newRecord)=>{
        res.status(200).json(newRecord)
@@ -106,7 +107,7 @@ const createOneDriver = function(req, res){
 }
 
 const editOneDriver = (req, res)=>{
-    Driver.query()
+    User.query()
     .updateAndFetchById( req.params._id, req.body)
     .then((updatedRecord)=>{
        res.status(200).json(updatedRecord)
@@ -114,7 +115,7 @@ const editOneDriver = (req, res)=>{
 }
 
 const deleteOneDriver = (req, res)=>{
-    Driver.query()
+    User.query()
     .deleteById(req.params._id)
     .then((deleteRecord)=>{
        res.status(200).json(deleteRecord)
@@ -143,8 +144,8 @@ apiRouter
   .get('/users/:_id', fetchOnePassenger)
   .get('/users/:_id/journeys/passenger', fetchOnePassengerJourneys)
   .post('/users', createOnePassenger)
-  .put('/passengers/:_id', editOnePassenger)
-  .delete('/passengers/:_id', deleteOnePassenger)
+  .put('/users/:_id', editOnePassenger)
+  .delete('/users/:_id', deleteOnePassenger)
 
 
 // apiRouter
