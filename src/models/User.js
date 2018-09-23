@@ -15,6 +15,40 @@ class User extends Password(Model) {
     return modelInstance
   }
 
+  static get relationMappings(){
+     const Journey = require('./Journey.js')
+
+      return {
+        "passengerJourneys" : {
+          relation: Model.HasManyRelation,
+          modelClass: Journey,
+          join: {
+            from: 'users.id',
+            to: 'journeys.passenger_user_id'
+          }
+        },
+
+        "driverJourneys" : {
+          relation: Model.HasManyRelation,
+          modelClass: Journey,
+          join: {
+            from: 'users.id',
+            to: 'journeys.driver_user_id'
+          }
+        },
+
+        "driverAccount" : {
+          relation: Model.HasOneRelation,
+          modelClass: DriverAccount,
+          join: {
+            from: 'users.id',
+            to: 'driver_accounts.user_id'
+          }
+        }
+      }
+  }
+
+
 }
 
 

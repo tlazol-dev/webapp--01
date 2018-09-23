@@ -2,28 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
-const DynamicRoute = (props) => {
-  const styleObj = {padding: '3rem', fontSize: '6vw', color: '#0E6655'}
-  return <h2 style={styleObj}>Dynamic Route: <u>{props.match.params.routeVal}</u></h2>
-}
+import Home from './components/Home.js';
+import Login from './components/Login.js';
+import PassengersDashboard from './components/PassengersDashboard.js';
+import PassengerService from './components/PassengerService.js';
+import DriverDashboard from './components/DriverDashboard.js';
+import DriveService from './components/DriveService.js';
 
-const DemoComponent = () => {
-  const styleObj = {padding: '3rem', fontSize: '6vw', color: 'slateblue'}
-  return <h2 style={styleObj}>Demo Route U</h2>
-}
-
-const ErrorNotFound = () => {
-  const styleObj = {padding: '3rem', fontSize: '6vw', color: 'indianred'}
-  return <h2 style={styleObj}>no hay nada aqui</h2>
-}
 
 class App extends React.Component {
   render (){
     return <div>
       <Switch>
-        <Route path='/ex/:routeVal' component={DynamicRoute}/>
-        <Route exact path='/' component={DemoComponent}/>
-        <Route component={ErrorNotFound}/>
+        <Route exact path='/' component={Home}/>
+        <Route exact path='/login' component={Login}/>
+        <Route exact path='/passengerdash' component={PassengersDashboard}/>
+        <Route exact path='/passengerservice' component={PassengerService}/>
+        <Route exact path='/driverdash' component={DriverDashboard}/>
+        <Route exact path='/driverservice' component={DriveService}/>
       </Switch>
     </div>
   }
