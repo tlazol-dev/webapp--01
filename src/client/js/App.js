@@ -2,24 +2,69 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
+import PubSub from "pubsub-js"
 import Home from './components/Home.js';
 import Login from './components/Login.js';
 import PassengersDashboard from './components/PassengersDashboard.js';
-import PassengerService from './components/PassengerService.js';
 import DriverDashboard from './components/DriverDashboard.js';
 import DriveService from './components/DriveService.js';
 
+import request from 'superagent';
 
 class App extends React.Component {
+
+  constructor(...args){
+      super(...args)
+      this.state = {
+        currentUser: {}
+      }
+  }
+
+
+
+ componentWillMount(){
+   const component = this
+
+   PubSub.subscribe("updateAppState", (evtName, newStateObj)=> {
+     console.log(newStateObj);
+     if(typeof newStateObj !== "object") return
+     component.setState(newStateObj)
+   })
+
+   request.get('/auth/current')
+     .then((serverRes)=>{
+       const userInfo = serverRes.body
+       component.setState({
+         currentUser : userInfo
+       })
+     })
+ }
+
   render (){
+
+    const appComponent = this
+
+
+    console.log("APP state ");
+    console.log(this.state);
+
     return <div>
+
+
+
       <Switch>
         <Route exact path='/' component={Home}/>
-        <Route exact path='/login' component={Login}/>
-        <Route exact path='/passengerdash' component={PassengersDashboard}/>
-        <Route exact path='/passengerservice' component={PassengerService}/>
-        <Route exact path='/driverdash' component={DriverDashboard}/>
-        <Route exact path='/driverservice' component={DriveService}/>
+        <Route exact path='/passenger/login' component={(routerWProps) => <Login {...routerWProps} />  }/>
+        <Route exact path='/driver/login' component={(routerWProps) => <Login {...routerWProps} />  }/>
+        <Route exact path='/passenger/dash' component={PassengersDashboard}/>
+        <Route exact path='/driver/dash' component={ (thePropsWithRouterInfo) => {
+            return <DriverDashboard
+              {...thePropsWithRouterInfo}
+                appState={ this.state }
+            />
+          }}
+          />
+        <Route exact path='/driver/service' component={DriveService}/>
       </Switch>
     </div>
   }

@@ -1,7 +1,8 @@
+
 const Router = require(`express`).Router;
 const User = require('../models/User.js')
 const Journey = require('../models/Journey.js')
-
+const DriverAccount = require('../models/DriverAccount')
 
 const apiRouter = Router()
 
@@ -75,6 +76,7 @@ const deleteOnePassenger = (req, res)=>{
 const fetchManyDrivers = (req, res)=>{
     User.query()
      .eager('driverJourneys')
+     .whereExists( User.relatedQuery("driverAccount"))
      .then((recordsWhitDrivers)=>{
        res.status(200).json(recordsWhitDrivers)
      })
@@ -136,6 +138,27 @@ const fetchOnePassengerJourneys = async (req, res)=>{
 }
 
 
+const fetchDriverAcctByParam = async (req, res)=>{
+  console.log("received search for ", req.query);
+  try {
+
+    if(typeof req.query.user_id !== "undefined"){
+      console.log("querying for ", req.query.user_id);
+      const records = await DriverAccount.query()
+          .where("user_id", req.query.user_id)
+
+      res.status(200).json(records)
+    } else {
+      res.status(200).json({})
+    }
+  } catch (e){
+    console.error(e);
+    res.status(500).send(e.toString())
+  }
+
+
+}
+
 
 apiRouter.get('/', showRoute)
 
@@ -148,12 +171,6 @@ apiRouter
   .delete('/users/:_id', deleteOnePassenger)
 
 
-// apiRouter
-//   .get('/passengers', fetchManyPassengers)
-//   .get('/passengers/:_id', fetchOnePassenger)
-//   .post('/passengers', createOnePassenger)
-//   .put('/passengers/:_id', editOnePassenger)
-//   .delete('/passengers/:_id', deleteOnePassenger)
 
 
 apiRouter
@@ -162,6 +179,10 @@ apiRouter
   .post('/drivers', createOneDriver)
   .put('/drivers/:_id', editOneDriver)
   .delete('/drivers/:_id', deleteOneDriver)
+
+  apiRouter
+    .get('/driver_accounts/search', fetchDriverAcctByParam)
+
 
 
 module.exports = apiRouter

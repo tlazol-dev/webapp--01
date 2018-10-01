@@ -1,23 +1,29 @@
-const { Model } = require('objection');
+const  { Model } = require('objection');
+const  User  = require ('./User');
 
-
-class Driver extends Model {
+class DriverAccount extends Model {
 
   static get tableName (){
-    return 'drivers_users'
+    return 'driver_accounts'
   }
 
 
   static get relationMappings(){
-    const Journey = require('./Journey.js')
+    const User = require('./User.js')
 
     return {
-      
+      driverUserAccount : {
+        relation: Model.BelongsToOneRelation,
+        modelClass: User,
+        join:{
+          from: 'driver_accounts.driver_user_id',
+          to: 'users.id'
+        }
+      }
     }
   }
-
 }
 
 
 
-module.exports = Driver
+module.exports = DriverAccount

@@ -7,6 +7,47 @@
   margin: auto;
 }
 
-  .loginview__btn-container{
+.loginview__btn-container{
     text-align: center;
-  }
+}
+
+.passenger-dashboard,
+.driver-dashboard{
+  max-width: 800px;
+  margin: auto;
+}
+
+.passenger-dashboard h2,
+.driver-dashboard h2 {
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+}
+
+.img-dash-pass,
+.img-dash-driv,{
+  width: 100%;
+}
+
+.footer-pass{
+  display:flex;
+  flex-wrap: wrap;
+  padding-top: 380px;
+  justify-content: space-between;
+  text-align: right;
+}
+
+.medium material-icons{
+  display: flex;
+  width: 50%;
+}
+
+.waves-effect btn{
+  display: flex;
+  width: 50%;
+}
+
+.footer-driv{
+  padding-top: 500px;
+  text-align: right;
+}

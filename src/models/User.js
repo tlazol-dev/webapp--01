@@ -43,7 +43,7 @@ class User extends Password(Model) {
           modelClass: DriverAccount,
           join: {
             from: 'users.id',
-            to: 'drivers_users.driver_user_id'
+            to: 'driver_accounts.user_id'
           }
         }
       }
