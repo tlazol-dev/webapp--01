@@ -42,10 +42,8 @@ class Login extends Component {
                     if(driverAcct.user_id){
                       component.props.history.push('/driver/dash')
                     }
-
                 })
             }
-
 
       })
       .catch((e)=>{
@@ -57,7 +55,6 @@ class Login extends Component {
         })
       })
   }
-
 
   render(){
     console.log(this.props);

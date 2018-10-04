@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-
 import PubSub from "pubsub-js"
 import Home from './components/Home.js';
 import Login from './components/Login.js';
 import PassengersDashboard from './components/PassengersDashboard.js';
 import DriverDashboard from './components/DriverDashboard.js';
 import DriveService from './components/DriveService.js';
+import ImageValidation from './components/ImageValidation.js';
+import NavMenu from './components/NavMenu.js'
 
 import request from 'superagent';
 
@@ -49,13 +50,12 @@ class App extends React.Component {
     console.log(this.state);
 
     return <div>
-
-
-
+      <NavMenu />
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route exact path='/passenger/login' component={(routerWProps) => <Login {...routerWProps} />  }/>
         <Route exact path='/driver/login' component={(routerWProps) => <Login {...routerWProps} />  }/>
+        <Route exact path='/img/validation' component={ImageValidation}/>
         <Route exact path='/passenger/dash' component={PassengersDashboard}/>
         <Route exact path='/driver/dash' component={ (thePropsWithRouterInfo) => {
             return <DriverDashboard

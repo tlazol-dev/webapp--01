@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Input, Button, Icon } from 'react-materialize';
 import request from 'superagent'
 import Login from './Login.js'
+import ImageValidation from './ImageValidation.js'
 
 class PassengersDashboard extends Component {
   render(){
@@ -25,6 +26,8 @@ class PassengersDashboard extends Component {
             <Input type="text" label="Punto de partida" s={12} />
             <Input type="text" label="Destino" s={12} />
           </div>
+
+              <ImageValidation />
 
           </Row>
 

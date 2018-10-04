@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Input, Button, Icon } from 'react-materialize';
+import { Row, Input, Button, NavBar } from 'react-materialize';
 import request from 'superagent'
 
 
@@ -16,7 +16,7 @@ class DriverDashboard extends Component {
     console.log("rendering login prompt..");
     return <div className="footer-driv">
        <h3>"Para loguearte da click aqui"</h3>
-      <a className="waves-effect waves-light btn">Log In</a>
+      <a className="waves-effect waves-light btn">Log Out</a>
     </div>
   }
 
