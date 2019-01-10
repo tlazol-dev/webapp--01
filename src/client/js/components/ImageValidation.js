@@ -27,8 +27,6 @@ class ImageValidation extends React.Component {
      .then( servicesRes =>{
        console.log('file from filestack?');
        console.log(servicesRes);
-
-       post
      })
    }
 

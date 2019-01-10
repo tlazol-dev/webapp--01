@@ -20,6 +20,8 @@ return knex
   journeysTable.integer('costo').notNullable()
   journeysTable.decimal("distancia", 3)
   journeysTable.string('route_image_link')
+  journeysTable.string('passenger_image_link')
+  journeysTable.string('driver_image_link')
   journeysTable.timestamps(true, true)
 
 

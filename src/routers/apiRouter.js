@@ -15,8 +15,6 @@ const showRoute = (req, res)=>{
   })
 }
 
-
-
 const fetchManyPassengers = (req, res)=>{
     User.query()
     .eager('passengerJourneys')
@@ -29,8 +27,6 @@ const fetchManyPassengers = (req, res)=>{
       res.status(500).send(errorMessage)
     })
 }
-
-
 
 const fetchOnePassenger = (req, res)=>{
   const db=req.app.locals.db
@@ -70,8 +66,6 @@ const deleteOnePassenger = (req, res)=>{
        res.status(200).json(deleteRecord)
      })
 }
-
-
 
 const fetchManyDrivers = (req, res)=>{
     User.query()
@@ -137,6 +131,57 @@ const fetchOnePassengerJourneys = async (req, res)=>{
   res.status(200).json(records)
 }
 
+const fetchManyJourneys = (req, res)=>{
+    Journey.query()
+    .eager('journeys')
+    .then((recordsWhithJourneys)=>{
+      res.status(200).json(recordsWhithJourneys)
+    })
+    .catch((err)=>{
+      console.log(err);
+      var errorMessage = err.toString()
+      res.status(500).send(errorMessage)
+    })
+}
+
+const fetchOneJourney = (req, res)=>{
+  const db=req.app.locals.db
+
+  const idInRoute = req.params._id
+    console.log(idInRoute);
+
+    db.select('*').from('journeys')
+      .where('id', '=', idInRoute)
+      .then((dbRecordsReturned)=>{
+        res.json(dbRecordsReturned)
+      })
+}
+
+ const createOneJourney = function(req, res){
+   // console.log(req.body)
+   Journey.query()
+     .insert(req.body)
+     .then((newRecord)=>{
+       res.status(200).json(newRecord)
+     })
+ }
+
+ const editOneJourney = (req, res)=>{
+   Journey.query()
+      .updateAndFetchById( req.params._id, req.body)
+      .then((updatedRecord)=>{
+        res.status(200).json(updatedRecord)
+      })
+ }
+
+
+const deleteOneJourney = (req, res)=>{
+   Journey.query()
+     .deleteById(req.params._id)
+     .then((deleteRecord)=>{
+       res.status(200).json(deleteRecord)
+     })
+}
 
 const fetchDriverAcctByParam = async (req, res)=>{
   console.log("received search for ", req.query);
@@ -155,10 +200,7 @@ const fetchDriverAcctByParam = async (req, res)=>{
     console.error(e);
     res.status(500).send(e.toString())
   }
-
-
 }
-
 
 apiRouter.get('/', showRoute)
 
@@ -171,8 +213,6 @@ apiRouter
   .delete('/users/:_id', deleteOnePassenger)
 
 
-
-
 apiRouter
   .get('/drivers', fetchManyDrivers)
   .get('/drivers/:_id', fetchOneDriver)
@@ -183,6 +223,12 @@ apiRouter
   apiRouter
     .get('/driver_accounts/search', fetchDriverAcctByParam)
 
+  apiRouter
+    .get('/journeys', fetchManyJourneys)
+    .get('/journey/:_id', fetchOneJourney)
+    .post('/journey', createOneJourney)
+    .put('/journey/:_id', editOneJourney)
+    .delete('/journey/:_id', editOneJourney)
 
 
 module.exports = apiRouter

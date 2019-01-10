@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Row, Input, Button, NavBar } from 'react-materialize';
+import { Row, Input, Button, Icon, Switch } from 'react-materialize';
 import request from 'superagent'
+import Login from './Login.js'
+import ImageValidation from './ImageValidation.js'
 
 
 class DriverDashboard extends Component {
@@ -15,7 +17,6 @@ class DriverDashboard extends Component {
   _renderLoginPrompt(){
     console.log("rendering login prompt..");
     return <div className="footer-driv">
-       <h3>"Para loguearte da click aqui"</h3>
       <a className="waves-effect waves-light btn">Log Out</a>
     </div>
   }
@@ -38,12 +39,15 @@ class DriverDashboard extends Component {
 
     return (
       <div className="driver-dashboard">
+
+      <Row>
+         <div className="btn-switch btn-align">
+          <Input name='on' type='switch' value='1' />
+         </div>
+      </Row>
+
         <h2> Driver Dashboard </h2>
         <h3> Bal bla bla </h3>
-
-        <div className="menu">
-          <i className="medium material-icons">menu</i>
-        </div>
 
           <Row>
             <div className="img-dash-driv">
@@ -52,7 +56,6 @@ class DriverDashboard extends Component {
           </Row>
 
           {renderedJsx}
-
 
       </div>
     )

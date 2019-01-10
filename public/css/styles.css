@@ -2,13 +2,111 @@
   box-sizing: border-box;
 }
 
-.loginview{
-  max-width: 800px;
-  margin: auto;
+.home{
+  height: 700px;
+  width: 100%;
+  font-family: 'Mali', light;
+  background: url("/images/andraz-lazic-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  
+}
+
+.home h2{
+  margin-left: 200px;
+  color: #3eb0af;
+  padding-top: 150px;
+  font-size: 100px;
+  text-shadow: 5px 5px 5px #3c0644;
+  display: inline-block;
+}
+
+.home p{
+  text-align: center;
+  color: #3eb0af;
+  text-shadow: 5px 5px 5px #3c0644;
+  font-size: 40px;
+}
+
+.home a{
+  position: relative;
+  left: 500px; bottom: 15px;
+  text-align: center;
+  display: inline;
+  font-size: 20px;
+  color: #4c045b;
+  margin-right: 20px;
+  margin-left: 30px;
+  background-color: #f0cce8;
+  }
+
+.btn-register{
+  position: relative;
+  bottom: 450px; left: 700px;
+
+}
+
+.btn-register-driver{
+  margin-right: 20px;
+  margin-left: 100px;
+}
+
+.btn-register-passenger{
+  margin-right: 20px;
+}
+
+.nav {
+  text-align:center;
+  background-color: #f0cce8;
+  font-family: 'Mali', light;
+  width: 100%;
+}
+
+.nav .brand-logo{
+  color: #f06292;
+}
+
+ .icon {
+   background-color: #bca4bb;
+   height: 64px;
+  }
+
+.loginview {
+  background: url("/images/michele-vergolani-unsplash.jpg");
+  background-size: 100% 100%;
+}
+
+.login-header {
+  position: relative;
+  top: 150px; left: 430px;
+  max-width: 500px;
+  height: 400px;
+  padding-top: 30px;
+  background-color: #ecebeb;
+}
+
+.loginview
+h4, h5 {
+  font-family: 'Crimson Text', serif;
+  color: #8c449c;
+  text-align: center;
 }
 
 .loginview__btn-container{
     text-align: center;
+}
+
+.btn {
+   background-color: #8c449c;
+}
+
+.img-logo{
+   margin-top: 25px;
+   padding-top: 20px;
+   width: 100px;
+   height: 100px;
+   border-radius: 20px;
+   margin-left: 50%;
 }
 
 .passenger-dashboard,
@@ -50,4 +148,8 @@
 .footer-driv{
   padding-top: 500px;
   text-align: right;
+}
+
+.btn-align{
+  padding-left: 650px;
 }

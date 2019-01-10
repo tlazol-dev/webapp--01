@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Input, Button, Icon } from 'react-materialize';
-import request from 'superagent'
-import NotificationSystem from 'react-notification-system'
-import PubSub from "pubsub-js"
+import request from 'superagent';
+import NotificationSystem from 'react-notification-system';
+import PubSub from "pubsub-js";
 
 class Login extends Component {
 
@@ -33,6 +33,7 @@ class Login extends Component {
 
             if (this.props.match.url === "/driver/login"){
               console.log("fetching for user", user.id);
+
               request.get(`/api/driver_accounts/search?user_id=${user.id}`)
                 .then((serverRes)=>{
                      console.log(serverRes.body);
@@ -48,7 +49,7 @@ class Login extends Component {
       })
       .catch((e)=>{
         console.log(e);
-        component.refs.NotificationSystem.addNotification({
+        component.refs.notificationSystem.addNotification({
           title: 'Unauthorized',
           message: 'Your email or password was incorrect',
           level: 'error'
@@ -64,22 +65,20 @@ class Login extends Component {
     if(this.props.match.path === "/driver/login") loginTypeText = "Driver"
 
     return (
-      <div className="loginview">
-        <h2> Login - {loginTypeText} </h2>
-        <h3> Ingresa tu email y contraseña para ingresar </h3>
-
+      <div className="loginview" className="login-header">
+          <h4> Login - {loginTypeText} </h4>
+          <h5> Ingresa tu email y contraseña para ingresar </h5>
         <Row>
-          <Input ref="emailInput" type="email" label="Email" s={12} />
-          <Input ref="pwInput" type="password" label="Password" s={12} />
+          <Input  ref="emailInput" type="email" label="Email" s={12} />
+          <Input  ref="pwInput" type="password" label="Password" s={12} />
           <div className="loginview__btn-container">
-            <Button onClick={(evt)=>{ this._handleLoginAttempt(evt) }} waves='light'>Enviar<Icon left>cloud</Icon></Button>
+            <Button className="btn" onClick={(evt)=>{ this._handleLoginAttempt(evt) }} waves='light'>Enviar<Icon left>send</Icon></Button>
           </div>
         </Row>
 
            <NotificationSystem ref="notificationSystem" />
 
       </div>
-
     );
   }
 }

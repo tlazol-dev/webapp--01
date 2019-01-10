@@ -6,9 +6,10 @@ import Home from './components/Home.js';
 import Login from './components/Login.js';
 import PassengersDashboard from './components/PassengersDashboard.js';
 import DriverDashboard from './components/DriverDashboard.js';
-import DriveService from './components/DriveService.js';
+import DriverService from './components/DriveService.js';
 import ImageValidation from './components/ImageValidation.js';
 import NavMenu from './components/NavMenu.js'
+import Journeys from './components/Journeys.js'
 
 import request from 'superagent';
 
@@ -64,7 +65,8 @@ class App extends React.Component {
             />
           }}
           />
-        <Route exact path='/driver/service' component={DriveService}/>
+        <Route exact path='/driver/service' component={DriverService}/>
+        <Route exact path='/journeys' component={Journeys}/>
       </Switch>
     </div>
   }
