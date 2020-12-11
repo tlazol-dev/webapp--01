@@ -34,7 +34,8 @@
     "react-notification-system": "^0.2.17",
     "react-router-dom": "^4.3.1",
     "react-webcam": "^1.1.0",
-    "superagent": "^4.1.0"
+    "superagent": "^4.1.0",
+    "serialize-javascript": ">=2.1.1"
   },
   "devDependencies": {
     "babel-core": "6.26.3",
@@ -45,6 +46,7 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "nodemon": "1.18.9",
+    "serialize-javascript": ">=2.1.1",
     "webpack": "4.28.1"
   }
 }
