@@ -18,7 +18,7 @@
     "cookie-parser": "1.4.3",
     "cookie-session": "2.0.0-beta.3",
     "ejs": "^2.6.1",
-    "express": "4.16.4",
+    "express": "4.17.3",
     "filestack-js": "^1.9.0",
     "fs-extra": "^7.0.1",
     "knex": "0.19.5",
